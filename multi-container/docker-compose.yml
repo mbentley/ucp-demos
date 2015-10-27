@@ -1,0 +1,25 @@
+app:
+  image: ehazlett/docker-demo:latest
+  environment:
+    - "TITLE=Docker Demo"
+    - "DB_USER=demo"
+    - "DB_PASS=demo"
+    - "DB_NAME=demo"
+    - "DB_SSL_MODE=disable"
+  ports:
+    - 8080
+  expose:
+    - 8080
+
+db:
+  image: postgres:latest
+  environment:
+    - "POSTGRES_USER=demo"
+    - "POSTGRES_PASSWORD=demo"
+  expose:
+    - 5432
+
+redis:
+  image: redis:latest
+  expose:
+    - 6379
