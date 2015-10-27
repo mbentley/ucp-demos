@@ -1,0 +1,7 @@
+app:
+    image: ehazlett/docker-demo:latest
+    ports:
+      - "8080"
+    environment:
+      - "INTERLOCK_DATA={\"hostname\":\"demo\",\"domain\":\"orca.mac\"}"
+      - "constraint:node!=orca.mac"
