@@ -1,10 +1,10 @@
 interlock:
     image: ehazlett/interlock:latest
     command: "--swarm-url tcp://192.168.56.11:2376 --swarm-tls-ca-cert /data/ca.pem --swarm-tls-cert /data/cert.pem --swarm-tls-key /data/key.pem --plugin haproxy start"
+    restart: always
     environment:
-      - "constraint:node==orca.mac"
+      - "affinity:container==orca-swarm-manager"
     ports:
       - "80:80"
     volumes:
-      #- "/var/lib/docker/volumes/orca-swarm-node-certs/_data:/data:ro"
       - "orca-swarm-node-certs:/data:ro"

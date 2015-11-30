@@ -1,0 +1,25 @@
+voting-app:
+  image: dtr.mac/voting/voting-app:latest
+  ports:
+    - "80"
+  environment:
+    - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"orca.mac\"}"
+
+redis:
+  image: dtr.mac/voting/redis:latest
+  ports: ["6379"]
+
+worker:
+  image: dtr.mac/voting/worker:latest
+
+db:
+  image: dtr.mac/voting/postgres:9.4
+  volumes:
+    - "postgres-data:/var/lib/postgresql/data"
+
+result-app:
+  image: dtr.mac/voting/result-app:latest
+  ports:
+    - "80"
+  environment:
+    - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"orca.mac\"}"
