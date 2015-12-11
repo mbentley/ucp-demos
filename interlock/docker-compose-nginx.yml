@@ -1,6 +1,6 @@
 interlock:
     image: ehazlett/interlock:latest
-    command: "--swarm-url tcp://192.168.56.11:2376 --swarm-tls-ca-cert /data/ca.pem --swarm-tls-cert /data/cert.pem --swarm-tls-key /data/key.pem --plugin haproxy start"
+    command: "--swarm-url tcp://192.168.56.11:2376 --swarm-tls-ca-cert /data/ca.pem --swarm-tls-cert /data/cert.pem --swarm-tls-key /data/key.pem --plugin nginx start"
     restart: always
     environment:
       - "affinity:container==ucp-swarm-manager"
