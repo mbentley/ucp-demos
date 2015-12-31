@@ -3,7 +3,7 @@ voting-app:
   ports:
     - "80"
   environment:
-    - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"orca.mac\"}"
+    - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"orcatest.mac\"}"
 
 redis:
   image: dockersolutions/voting-redis:latest
@@ -18,8 +18,8 @@ db:
     - "postgres-data:/var/lib/postgresql/data"
 
 result-app:
-  image: dockersolutions/voting-result-app:latest
+  image: dockersolutions/voting-result:latest
   ports:
     - "80"
   environment:
-    - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"orca.mac\"}"
+    - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"orcatest.mac\"}"
