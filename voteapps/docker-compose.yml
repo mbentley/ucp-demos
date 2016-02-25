@@ -1,25 +1,50 @@
-voting-app:
-  image: dtr.mac/voting/voting-app:latest
-  ports:
-    - "80"
-  environment:
-    - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"orca.mac\"}"
+version: "2"
 
-redis:
-  image: dtr.mac/voting/redis:latest
-  ports: ["6379"]
+services:
+  voting-app:
+    image: dockersolutions/voting-voting-app:latest
+    networks:
+      - voteapps-web
+      - voteapps-data
+    ports:
+      - "80"
+    environment:
+      - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"demo.dckr.org\"}"
 
-worker:
-  image: dtr.mac/voting/worker:latest
+  result-app:
+    image: dockersolutions/voting-result:latest
+    networks:
+      - voteapps-web
+      - voteapps-data
+    ports:
+      - "80"
+    environment:
+      - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"demo.dckr.org\"}"
 
-db:
-  image: dtr.mac/voting/postgres:9.4
-  volumes:
-    - "postgres-data:/var/lib/postgresql/data"
+  redis:
+    image: dockersolutions/voting-redis:latest
+    networks:
+      - voteapps-data
+    ports: ["6379"]
 
-result-app:
-  image: dtr.mac/voting/result-app:latest
-  ports:
-    - "80"
-  environment:
-    - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"orca.mac\"}"
+  worker:
+    image: dockersolutions/voting-worker:latest
+    networks:
+      - voteapps-data
+
+  db:
+    image: dockersolutions/voting-postgres:9.4
+    networks:
+      - voteapps-data
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
+networks:
+  voteapps-web:
+    driver: overlay
+  voteapps-data:
+    driver: overlay
+
+volumes:
+  db-data:
+    driver: default
