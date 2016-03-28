@@ -9,7 +9,7 @@ services:
     ports:
       - "80"
     environment:
-      - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"demo.dckr.org\"}"
+      - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"ucp.mac\"}"
     labels:
       - "com.docker.ucp.access.label=prod"
 
@@ -21,7 +21,7 @@ services:
     ports:
       - "80"
     environment:
-      - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"demo.dckr.org\"}"
+      - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"ucp.mac\"}"
     labels:
       - "com.docker.ucp.access.label=prod"
 

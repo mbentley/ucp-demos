@@ -3,8 +3,10 @@ interlock:
     command: "--swarm-url tcp://192.168.56.11:2376 --swarm-tls-ca-cert /data/ca.pem --swarm-tls-cert /data/cert.pem --swarm-tls-key /data/key.pem --plugin haproxy start"
     restart: always
     environment:
-      - "affinity:container==ucp-swarm-manager"
+      #- "affinity:node==orca.mac"
+      - "constraint:node==orca.mac"
     ports:
       - "80:80"
     volumes:
-      - "ucp-swarm-node-certs:/data:ro"
+      #- "ucp-swarm-node-certs:/data:ro"
+      - "ucp-node-certs:/data:ro"
