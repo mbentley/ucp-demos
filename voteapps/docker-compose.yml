@@ -57,4 +57,4 @@ networks:
 
 volumes:
   db-data:
-    driver: default
+    driver: local

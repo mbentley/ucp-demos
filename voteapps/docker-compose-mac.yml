@@ -11,7 +11,7 @@ services:
     environment:
       - "INTERLOCK_DATA={\"hostname\":\"vote\",\"domain\":\"ucp.mac\"}"
     labels:
-      - "com.docker.ucp.access.label=prod"
+      - "com.docker.ucp.access.label=voteappsprod"
 
   result-app:
     image: dockersolutions/voting-result:latest
@@ -23,7 +23,7 @@ services:
     environment:
       - "INTERLOCK_DATA={\"hostname\":\"result\",\"domain\":\"ucp.mac\"}"
     labels:
-      - "com.docker.ucp.access.label=prod"
+      - "com.docker.ucp.access.label=voteappsprod"
 
   redis:
     image: dockersolutions/voting-redis:latest
@@ -31,14 +31,14 @@ services:
       - voteapps-data
     ports: ["6379"]
     labels:
-      - "com.docker.ucp.access.label=prod"
+      - "com.docker.ucp.access.label=voteappsprod"
 
   worker:
     image: dockersolutions/voting-worker:latest
     networks:
       - voteapps-data
     labels:
-      - "com.docker.ucp.access.label=prod"
+      - "com.docker.ucp.access.label=voteappsprod"
 
   db:
     image: dockersolutions/voting-postgres:9.4
@@ -47,7 +47,7 @@ services:
     volumes:
       - "db-data:/var/lib/postgresql/data"
     labels:
-      - "com.docker.ucp.access.label=prod"
+      - "com.docker.ucp.access.label=voteappsprod"
 
 networks:
   voteapps-web:
