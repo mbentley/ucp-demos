@@ -1,7 +1,7 @@
 app:
-    image: ehazlett/docker-demo:latest
+    image: ehazlett/docker-demo:dcus
     ports:
-      - "8080"
+      - "8080:8080"
     environment:
       - "INTERLOCK_DATA={\"hostname\":\"demo\",\"domain\":\"demo.docker.org\"}"
       - "affinity:container!=ucp-swarm-manager"
